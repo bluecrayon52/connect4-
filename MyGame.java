@@ -6,6 +6,7 @@
 package mygame;
 
 import java.util.Scanner;
+
 import java.util.InputMismatchException; 
 
 public class MyGame {
@@ -16,42 +17,59 @@ public class MyGame {
     public static void main(String[] args) {
 
         Scanner kb = new Scanner(System.in);
+        
         boolean Exception;
+        
         String playAgain;
+        
         boolean Again;
 
-        do {
+        do { // loop to play again 
+            
             Again = false;
+            
             C4 testGame = new C4();
 
             System.out.println("Let's Play " + testGame.getName() + "\n");
 
-            do {
+            do { // loop to continue game until someone wins or the board is full 
+                
                 testGame.printBoard();
+                
                 System.out.print("Player " + testGame.getTurn()
+                        
                         + " choose a column: ");
-                do {
+                
+                do { // loop for try catch blocks 
+                    
                     try {
                         Exception = false;
+                        
                         testGame.playPiece(kb.nextInt());
 
                         testGame.nextturn(); 
                     } 
                     
                     catch (ArrayIndexOutOfBoundsException ex) {
-                        Exception = true;
+                        
+                        Exception = true; // turn loop on 
+                        
                         System.out.print("This column is out of bounds\n"
                                 + "choose another column: ");
                     } 
                     
                     catch (ColFullException ex) {
-                        Exception = true;
+                        
+                        Exception = true; // turn loop on 
+                        
                         System.out.print("This column is full\n"
                                 + "choose another column: ");
                     }
                     
                     catch (InputMismatchException ex){
-                        Exception = true; 
+                        
+                        Exception = true; // turn loop on 
+                        
                         System.out.println("Invalid input.");
                     }
                     
@@ -60,31 +78,50 @@ public class MyGame {
 
             } while(testGame.isWinner() == false && testGame.isFull() == false);
 
-            testGame.printBoard();
+            testGame.printBoard(); // print final board after game ends 
 
-            testGame.nextturn();
-
-            System.out.println("Player " + testGame.currentTurn()
+            testGame.nextturn();  // correct for loop iterating turn 
+            
+            if(testGame.isFull() == true){
+                
+                System.out.println("the board is full.");
+            }
+            
+            if(testGame.isWinner() == true){
+                
+                System.out.println("Player " + testGame.currentTurn()
+                        
                     + " is the winner");
+            }
+            
 
-            int validate;
+            int validate; // variable to control loop 
 
-            kb.nextLine();
-            do {
+            kb.nextLine(); // clear scanner buffer 
+            
+            do { // loop for new game initiation 
+                
                 System.out.print("Do you want to play again?(Y/N): ");
 
                 playAgain = kb.nextLine();
+                
                 validate = 0;
 
                 if (playAgain.equalsIgnoreCase("y")) {
+                    
                     Again = true;
 
                 } else if (playAgain.equalsIgnoreCase("n")) {
+                    
                     System.out.println("Thanks for playing " + testGame.getName()
                             + ", goodbye!");
-                } else {
+                } 
+                
+                else {
+                    
                     System.out.println("Invalid entry");
-                    validate = 1;
+                    
+                    validate = 1;  // turns loop on 
                 }
 
             } while (validate == 1);

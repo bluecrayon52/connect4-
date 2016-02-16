@@ -5,7 +5,8 @@
  */
 
 package mygame;
-// unchecked(Runtime) or checked(Exception)?  
+ 
+// custom exception class that extends RuntimeException for full columns 
 
 public class ColFullException extends RuntimeException {
 
