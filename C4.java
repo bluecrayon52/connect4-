@@ -230,6 +230,9 @@ public class C4 extends Game {
      representation of the game board to the console
      */
     public void printBoard() {
+        System.out.println("    0    1    2    3    4    5    6");
+        
+        System.out.println("   ---------------------------------");
         
         for (int i = 0; i < ROWS; i++) {
             

@@ -40,14 +40,14 @@ public class MyGame {
                         
                         + " choose a column: ");
                 
+                
                 do { // loop for try catch blocks 
                     
                     try {
                         Exception = false;
                         
                         testGame.playPiece(kb.nextInt());
-
-                        testGame.nextturn(); 
+ 
                     } 
                     
                     catch (ArrayIndexOutOfBoundsException ex) {
@@ -78,12 +78,15 @@ public class MyGame {
                     
 
                 } while (Exception == true);
-
+                
+                  if(testGame.isWinner() == false){
+                      
+                      testGame.nextturn();
+                  }
+                  
             } while(testGame.isWinner() == false && testGame.isFull() == false);
 
-            testGame.printBoard(); // print final board after game ends 
-
-            testGame.nextturn();  // correct for loop iterating turn 
+            testGame.printBoard(); // print final board after game ends  
             
             if(testGame.isFull() == true){
                 
@@ -91,10 +94,9 @@ public class MyGame {
             }
             
             if(testGame.isWinner() == true){
-                
-                System.out.println("Player " + testGame.currentTurn()
-                        
-                    + " is the winner");
+               
+               testGame.winner(); 
+               
             }
             
 
@@ -110,11 +112,11 @@ public class MyGame {
                 
                 validate = 0;
 
-                if (playAgain.equalsIgnoreCase("y")) {
+                if (playAgain.equalsIgnoreCase("y")||playAgain.equalsIgnoreCase("yes")){
                     
                     Again = true;
 
-                } else if (playAgain.equalsIgnoreCase("n")) {
+                } else if (playAgain.equalsIgnoreCase("n")||playAgain.equalsIgnoreCase("no")){
                     
                     System.out.println("Thanks for playing " + testGame.getName()
                             + ", goodbye!");
