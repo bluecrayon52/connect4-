@@ -55,7 +55,7 @@ public class MyGame {
                         Exception = true; // turn loop on 
                         
                         System.out.print("This column is out of bounds\n"
-                                + "choose another column: ");
+                                + "choose another column(0-6): ");
                     } 
                     
                     catch (ColFullException ex) {
@@ -70,7 +70,10 @@ public class MyGame {
                         
                         Exception = true; // turn loop on 
                         
-                        System.out.println("Invalid input.");
+                        kb.nextLine(); // clear scanner buffer
+                        
+                        System.out.print("Invalid input\n"
+                                + "choose a column number:");
                     }
                     
 

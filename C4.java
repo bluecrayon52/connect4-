@@ -195,14 +195,14 @@ public class C4 extends Game {
     /* a playPiece method that inserts the value of the current player 
      into board at the next available row for the given col
      */
-    public void playPiece(int col) throws InputMismatchException {
+    public void playPiece(int col)throws InputMismatchException{
      
         if (isColFull(col) == true) {
             
             throw new ColFullException();
         }
         
-        if (col >= COLS) {
+        if (col >= COLS || col< 0) {
             
             throw new ArrayIndexOutOfBoundsException();
         }
